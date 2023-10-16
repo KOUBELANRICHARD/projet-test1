@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme IoT</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>ZUGUS, The Best of IOT Plateforme.</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Accueil</a>
+        <a href="#about">A propos</a>
+        <a href="#device">Objets</a>
+        <a href="#services">Services</a>
+        <a href="#team">Contact</a>
+    </nav>
+
+    <section id="home">
+        <h2>Bienvenue sur la plateforme ZUGUS</h2>
+        <p>La plateforme ZUGUS est une solution IoT de pointe conçue pour vous aider à connecter vos objets du quotidien et à analyser les données qu'ils génèrent. Qu'il s'agisse de capteurs comme TMP36, DHT11 ou de tout autre objet connecté, ZUGUS facilite leur intégration et vous offre une visualisation graphique des données pour une meilleure compréhension.</p>
+        <p>Créé par l'entreprise Bdelium, ZUGUS vise à révolutionner la façon dont les entreprises et les particuliers interagissent avec l'Internet des objets. Explorez la plateforme, ajoutez vos objets et découvrez le potentiel de l'IoT!</p>
+        <a href="#device" class="btn-explore">Explorez nos objets</a>
+    </section>
+    
+
+    <section id="team">
+        <h2>Support technique</h2>
+
+        {% for team in teams %}
+        <div class="team-member">
+            <div class="team-member-img-circle">
+                <img src="{% static 'media/'%}{{ team.slug }}.png" alt="{{ team.name }}">
+            </div>
+            <div class="team-member-info">
+                <h3>{{ team.name }}</h3>
+                <p>Fonction: {{ team.fonction }}</p>
+                <p>Poste : {{ team.posteDescription }}</p>
+                <p>Téléphone: {{ team.phone }}</p>
+                <p>Email: {{ team.email }}</p>
+                <p>Date embauche: {{ team.dateEmbauche }}</p>
+                <p>Expérience: {{ team.experience }} an(s)</p>
+                    {% if team.contrat == 1 %}
+                    <p>Contrat: CDI</p>
+                    {% else  %}
+                    <p>Contrat: Freelance</p>
+                    {% endif %}
+                <p>Heure de consultation journalier: {{ team.timeConsultation }}</p>
+                <p>Salaire: {{ team.salaire }}</p>
+                <p>Linkedin: <a href="{{ team.linked }}">Cliquez ici</a></p>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    
+</body>
+</html>
